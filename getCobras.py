@@ -13,7 +13,7 @@ class CobraFinder(scrapy.Spider):
     name = "hunter"
     cobraTeamsFile = "cobraTeams.txt" 
     s = 1300000
-    e = 1348148
+    e = 1301000
     URL = 'https://www.neuronball.com/en/player/{}/' # format with player number
 
     def start_requests(self):
