@@ -15,6 +15,10 @@ class CobraFinder(scrapy.Spider):
     s = 1300000
     e = 1301000
     URL = 'https://www.neuronball.com/en/player/{}/' # format with player number
+    
+    custom_settings = {
+        'AUTOTHROTTLE_ENABLED': True
+    }
 
     def start_requests(self):
         urls = [self.URL.format(str(i)) for i in range(self.s, self.e)]
