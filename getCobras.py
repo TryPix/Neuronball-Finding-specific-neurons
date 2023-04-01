@@ -17,9 +17,7 @@ class CobraFinder(scrapy.Spider):
     URL = 'https://www.neuronball.com/en/player/{}/' # format with player number
 
     def start_requests(self):
-        urls = []
-        for i in range (self.s, self.e): # fetch range
-            urls.append(self.URL.format(str(i)))
+        urls = [self.URL.format(str(i)) for i in range(self.s, self.e)]
 
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
