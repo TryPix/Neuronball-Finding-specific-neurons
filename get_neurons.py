@@ -43,13 +43,21 @@ def get_data(url):
     neuron_type_div = soup.find('div', class_ = 'neuron-type')
     stats_div = soup.find('div', class_ = 'stats')
     script_div = soup.find('div', class_ = 'content').find('script')
+    level_div = soup.find('div', class_ = 'level')
+    world_rank = soup.find('div', class_ = 'ranked').find('i', class_='fa fa-globe').find_parent('tr').find_all('td')[2]
 
     if (not name_div): return
 
     player_full_info = {"Name": name_div.text, "Type": neuron_type_div.text}
-
     player_full_info.update(get_player_options(script_div))
     player_full_info.update(get_stats(stats_div))
+    player_full_info['level'] = level_div.text.replace('level ', '')
+
+    if world_rank:
+        world_rank_int = world_rank.text.replace('#', '')
+        player_full_info['rank'] = world_rank_int
+    else:
+         player_full_info['rank'] = 0
 
     return player_full_info
 
@@ -57,7 +65,7 @@ def get_all(start_id, end_id):
      with open('neuron_database.csv', mode='a', newline='', encoding='utf-8') as f:
 
         writer = csv.writer(f)
-       # writer.writerow(['id', 'Name', 'Type', 'pattern', 'color1', 'color2', 'number', 'type_id', 'eyes', 'Goals', 'Passes', 'Interceptions', 'Framed Shots', 'Stopped Shots'])
+       # writer.writerow(['id', 'Name', 'Type', 'pattern', 'color1', 'color2', 'number', 'type_id', 'eyes', 'Goals', 'Passes', 'Interceptions', 'Framed Shots', 'Stopped Shots', 'level', 'rank'])
 
 
         for neuron_id in range(start_id, end_id):
@@ -74,4 +82,4 @@ def get_all(start_id, end_id):
 
 
 if __name__ == '__main__':
-    get_all(14000, 14010)
+    get_all(14000, 14001)
