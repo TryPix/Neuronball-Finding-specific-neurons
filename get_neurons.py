@@ -6,8 +6,6 @@ import time
 import random
 import csv
 
-url = 'https://www.neuronball.com/en/player/1391757/'
-
 def get_player_options(script):
     if not script: return
 
