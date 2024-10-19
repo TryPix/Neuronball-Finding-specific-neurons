@@ -54,10 +54,10 @@ def get_data(url):
     return player_full_info
 
 def get_all(start_id, end_id):
-     with open('neuron_database.csv', mode='w', newline='', encoding='utf-8') as f:
+     with open('neuron_database.csv', mode='a', newline='', encoding='utf-8') as f:
 
         writer = csv.writer(f)
-        writer.writerow(['id', 'Name', 'Type', 'pattern', 'color1', 'color2', 'number', 'type_id', 'eyes', 'Goals', 'Passes', 'Interceptions', 'Framed Shots', 'Stopped Shots'])
+       # writer.writerow(['id', 'Name', 'Type', 'pattern', 'color1', 'color2', 'number', 'type_id', 'eyes', 'Goals', 'Passes', 'Interceptions', 'Framed Shots', 'Stopped Shots'])
 
 
         for neuron_id in range(start_id, end_id):
@@ -70,8 +70,8 @@ def get_all(start_id, end_id):
                 writer.writerow(player_info.values())
 
                 # To not overwhelm the server
-                time.sleep(random.uniform(1, 3))
+                time.sleep(random.uniform(0.75, 1))
 
 
 if __name__ == '__main__':
-    get_all(1391757, 1391759)
+    get_all(14000, 14010)
