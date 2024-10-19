@@ -44,7 +44,9 @@ def get_data(url):
     stats_div = soup.find('div', class_ = 'stats')
     script_div = soup.find('div', class_ = 'content').find('script')
     level_div = soup.find('div', class_ = 'level')
-    world_rank = soup.find('div', class_ = 'ranked').find('i', class_='fa fa-globe').find_parent('tr').find_all('td')[2]
+    world_rank = soup.find('div', class_ = 'ranked')
+    
+    if world_rank: world_rank = world_rank.find('i', class_='fa fa-globe').find_parent('tr').find_all('td')[2]
 
     if (not name_div): return
 
