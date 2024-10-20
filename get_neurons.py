@@ -73,12 +73,12 @@ def get_all(start_id, end_id):
             player_info = {"id": neuron_id}
             data = get_data(url)
             if data:
-                player_info.update(get_data(url))
+                player_info.update(data)
 
                 writer.writerow(player_info.values())
 
                 # To not overwhelm the server
-                time.sleep(random.uniform(0.75, 1))
+                time.sleep(random.uniform(1, 3))
 
 
 if __name__ == '__main__':
